@@ -1,47 +1,56 @@
-module.exports = function (grunt){
+/*jshint esversion: 6 */
 
-  //project config
-  grunt.initConfig({
-    sass: {
-      options: {
-        sourceMap: true
-      },
-      dist: {
-        files: {
-            'css/main.css': 'sass/main.sass'
-      }
-    }
-  },
+module.exports = function (grunt) {
 
-browserSync: {
-    bsFiles: {
-      src: ['css/*.css', 'index.html']
-    },
-    options: {
-      watchTask: true,
-      server: {
-        baseDir: './'
-      }
-    }
-  },
-
- watch: {
-    scripts: {
-        files: ['sass/*.sass'],
-        tasks: ['sass'],
-        options: {
-            spawn: false,
+    grunt.initConfig({
+        sass: {
+            options: {
+                sourceMap: true
+            },
+            dist: {
+                files: {
+                    'css/main.css': 'sass/main.sass'
+                }
+            }
         },
-    }
-}
-});
 
-  //load the plugin tasks
-grunt.loadNpmTasks('grunt-sass');
-grunt.loadNpmTasks('grunt-browser-sync');
-grunt.loadNpmTasks('grunt-contrib-watch');
+        jshint: {
+            all: ['js/*.js'],
+            options: {
+                'esversion': 6
+            }
+        },
 
-  //default task
-grunt.registerTask('default', ['sass', 'browserSync', 'watch']);
+        browserSync: {
+            bsFiles: {
+                src: ['css/*.css', 'index.html']
+            },
+            options: {
+                watchTask: true,
+                server: {
+                    baseDir: './'
+                }
+            }
+        },
+
+        watch: {
+            scripts: {
+                files: ['sass/*.sass'],
+                tasks: ['sass'],
+                options: {
+                    spawn: false,
+                },
+            }
+        }
+    });
+
+    
+    grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-browser-sync');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+
+
+    grunt.registerTask('default', ['sass', 'browserSync', 'jshint', 'watch']);
 
 };
