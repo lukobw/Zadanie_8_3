@@ -35,8 +35,8 @@ module.exports = function (grunt) {
 
         watch: {
             scripts: {
-                files: ['sass/*.sass'],
-                tasks: ['sass'],
+                files: ['sass/*.sass', 'js/*.js'],
+                tasks: ['sass', 'jshint'],
                 options: {
                     spawn: false,
                 },
@@ -44,7 +44,7 @@ module.exports = function (grunt) {
         }
     });
 
-    
+
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-contrib-watch');
