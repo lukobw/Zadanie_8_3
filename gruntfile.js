@@ -1,7 +1,6 @@
-/*jshint esversion: 6 */
-
 module.exports = function (grunt) {
 
+    'use strict';
     grunt.initConfig({
         sass: {
             options: {
@@ -20,7 +19,6 @@ module.exports = function (grunt) {
                 'esversion': 6
             }
         },
-
         browserSync: {
             bsFiles: {
                 src: ['css/*.css', 'index.html']
@@ -32,18 +30,21 @@ module.exports = function (grunt) {
                 }
             }
         },
-
         watch: {
-            scripts: {
-                files: ['sass/*.sass', 'js/*.js'],
-                tasks: ['sass', 'jshint'],
+            sass: {
+                files: ['sass/*.sass'],
+                tasks: ['sass'],
                 options: {
                     spawn: false,
                 },
+            },
+
+            jshint: {
+                files: ['js/*.js'],
+                tasks: ['jshint'],
             }
         }
     });
-
 
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-browser-sync');
